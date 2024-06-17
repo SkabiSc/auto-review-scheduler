@@ -1,4 +1,4 @@
-name: Run Script Every 1 Hour
+name: Run Script 1AM Weekdays
 
 on:
   schedule:
