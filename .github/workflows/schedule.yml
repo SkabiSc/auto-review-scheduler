@@ -1,0 +1,27 @@
+name: Run Script Every 1 Hour
+
+on:
+  schedule:
+    - cron:  '0 8 * * 1-5'
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Script
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BASE_ID: ${{ secrets.BASE_ID}}
+        run: |
+          python script.py
